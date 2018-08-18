@@ -5,7 +5,7 @@ import ListBooks from './ListBooks'
 import SearchBooks from './SearchBooks'
 import './App.css'
 
-class BooksApp extends React.Component {
+class BooksApp extends Component {
   
   state = {
     books: []
@@ -31,7 +31,7 @@ class BooksApp extends React.Component {
         <Route path="/search" render={({ history }) => (
           <SearchBooks
             // this.state.showSearchPage
-            // books={this.state.books}
+            books={this.state.books}
           />
         )} />
       </div>

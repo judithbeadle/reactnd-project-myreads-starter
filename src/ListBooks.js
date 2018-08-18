@@ -11,14 +11,10 @@ class ListBooks extends Component {
 		books: PropTypes.array.isRequired
 	}
 
-	state = {
-		query: ''
-	}
-
 	render(){
 
 		const { books } = this.props
-		const { query } = this.state
+		
 
 		let allBooks
 		allBooks = books
@@ -61,7 +57,9 @@ class ListBooks extends Component {
 					</div>
 	            </div>
 			</div>
-			
+			<div className="open-search">
+			 	<Link className="close-search" to="/search">Add a book</Link>
+            </div>
 			</div>
 		)
 	}
