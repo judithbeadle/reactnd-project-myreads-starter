@@ -8,8 +8,8 @@ import sortBy from 'sort-by'
 class ListBooks extends Component {
 	// the following is making use of prop-types package. 
 	// in Terminal type: npm install --save prop-types
-	static propTypes = {
-		books: PropTypes.array.isRequired
+	updateBook = (book, shelf) => {
+		this.props.onUpdateShelf(book, shelf)
 	}
 
 	render(){
@@ -32,7 +32,7 @@ class ListBooks extends Component {
 						<h2 className="bookshelf-title">Currently Reading</h2>
 						<div className="bookshelf-books">
 					    <ol className="books-grid">
-					    	{allBooks.map((book) =>(
+					    	{allBooks.filter(book => book.shelf === 'currentlyReading').map((book) =>(
 					    	<li key={book.id}>
 							<SingleBook 
             					book={book}
@@ -41,6 +41,37 @@ class ListBooks extends Component {
 						))}
 					    </ol>
 					</div>
+					
+					<div className="bookshelf">
+					<h2 className="bookshelf-title">Want to Read</h2>
+						<div className="bookshelf-books">
+						    <ol className="books-grid">
+						    	{allBooks.filter(book => book.shelf === 'wantToRead').map((book) =>(
+						    	<li key={book.id}>
+								<SingleBook 
+	            					book={book}
+								/>
+								</li>
+							))}
+						    </ol>
+						</div>
+					</div>
+
+					<div className="bookshelf">
+					<h2 className="bookshelf-title">Read</h2>
+						<div className="bookshelf-books">
+						    <ol className="books-grid">
+						    	{allBooks.filter(book => book.shelf === 'read').map((book) =>(
+						    	<li key={book.id}>
+								<SingleBook 
+	            					book={book}
+								/>
+								</li>
+							))}
+						    </ol>
+						</div>
+					</div>
+
 	            </div>
 			</div>
 			<div className="open-search">
