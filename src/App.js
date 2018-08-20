@@ -2,13 +2,15 @@ import React, { Component } from 'react'
 import { Route, Link } from 'react-router-dom'
 import * as BooksAPI from './BooksAPI'
 import ListBooks from './ListBooks'
-import SearchBooks from './SearchBooks'
 import './App.css'
+import SingleBook from './SingleBook.js'
 
 class BooksApp extends Component {
   
   state = {
-    books: []
+    books: [],
+    query: '',
+    showingBooks: []
   }
 
   // get all books
@@ -51,6 +53,7 @@ class BooksApp extends Component {
             // TODO function for switching shelf
             // onChangeShelf={this.changeShelf} 
             books={this.state.books}
+            onUpdateShelf={(book, shelf) => this.UpdateShelf(book, shelf)}
           />
         )} />
         <Route path="/search" render={({ history }) => (
@@ -75,7 +78,15 @@ class BooksApp extends Component {
                 </div>
               </div>
               <div className="search-books-results">
-                <ol className="books-grid"></ol>
+                <ol className="books-grid">
+                  {this.state.showingBooks.map((book,i) => (
+                   <li key={book.id}>
+              <SingleBook 
+                      book={book}
+              />
+              </li>
+                      ))}
+                </ol>
               </div>
       </div>
         )} />
