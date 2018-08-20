@@ -6,8 +6,7 @@ import escapeRegExp from 'escape-string-regexp'
 import sortBy from 'sort-by'
 
 class ListBooks extends Component {
-	// the following is making use of prop-types package. 
-	// in Terminal type: npm install --save prop-types
+	
 	updateBook = (book, shelf) => {
 		this.props.onUpdateShelf(book, shelf)
 	}
@@ -35,7 +34,9 @@ class ListBooks extends Component {
 					    	{allBooks.filter(book => book.shelf === 'currentlyReading').map((book) =>(
 					    	<li key={book.id}>
 							<SingleBook 
+								key={book.id}
             					book={book}
+            					onUpdateBook={(book, shelf) => this.updateBook(book, shelf)}
 							/>
 							</li>
 						))}
@@ -49,7 +50,9 @@ class ListBooks extends Component {
 						    	{allBooks.filter(book => book.shelf === 'wantToRead').map((book) =>(
 						    	<li key={book.id}>
 								<SingleBook 
+									key={book.id}
 	            					book={book}
+	            					onUpdateBook={(book, shelf) => this.updateBook(book, shelf)}
 								/>
 								</li>
 							))}
@@ -64,7 +67,9 @@ class ListBooks extends Component {
 						    	{allBooks.filter(book => book.shelf === 'read').map((book) =>(
 						    	<li key={book.id}>
 								<SingleBook 
+									key={book.id}
 	            					book={book}
+	            					onUpdateBook={(book, shelf) => this.updateBook(book, shelf)}
 								/>
 								</li>
 							))}

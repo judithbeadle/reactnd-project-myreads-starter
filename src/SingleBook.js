@@ -2,11 +2,29 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
 class SingleBook extends Component {
+
+	state = {
+		shelf: 'none'
+	}
+
+	componentDidMount(){
+		const { book } = this.props;
+		if(book.shelf) {
+			this.setState({ shelf: book.shelf })
+		}
+	}
+
+	changeBookShelf = (event) => {
+		this.setState({
+			shelf: event.target.value
+		})
+		this.props.onUpdateBook(this.props.book, event.target.value)
+	}
+
 	render(){
 
-		const { book } = this.props
 		
-
+		
 		const style = {
 			width: 128,
 			height: 192,
@@ -19,7 +37,7 @@ class SingleBook extends Component {
 			  		<div className="book-top">
 			   			<div className="book-cover" style={style} />
 						<div className="book-shelf-changer">
-			              <select>
+			              <select onChange={this.changeBookShelf} value={this.state.shelf}>
 			                <option value="move" disabled>Move to...</option>
 			                <option value="currentlyReading">Currently Reading</option>
 			                <option value="wantToRead">Want to Read</option>

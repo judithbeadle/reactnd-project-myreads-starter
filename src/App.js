@@ -13,6 +13,26 @@ class BooksApp extends Component {
     showingBooks: []
   }
 
+  updateShelf = (book, shelf) => {
+    let books;
+    if (this.state.books.findIndex(b => b.id === book.id) > 0) {
+      books = this.state.books.map(b => {
+        if (b.id === book.id) {
+          return {...book, shelf}
+        } else {
+          return b
+        }
+      })
+    } else {
+      books = [...this.state.books, {...book, shelf}]
+    }
+    this.setState({books})
+
+    BooksAPI.update(book, shelf).then((data) => {
+      
+    })
+  }
+
   // get all books
   componentDidMount() {
     BooksAPI.getAll().then((books) => {
@@ -43,6 +63,7 @@ class BooksApp extends Component {
     }
   }
 
+
   render() {
     const {query} = this.state
     return (
@@ -53,7 +74,7 @@ class BooksApp extends Component {
             // TODO function for switching shelf
             // onChangeShelf={this.changeShelf} 
             books={this.state.books}
-            onUpdateShelf={(book, shelf) => this.UpdateShelf(book, shelf)}
+            onUpdateShelf={(book, shelf) => this.updateShelf(book, shelf)}
           />
         )} />
         <Route path="/search" render={({ history }) => (
@@ -80,11 +101,13 @@ class BooksApp extends Component {
               <div className="search-books-results">
                 <ol className="books-grid">
                   {this.state.showingBooks.map((book,i) => (
-                   <li key={book.id}>
-              <SingleBook 
-                      book={book}
-              />
-              </li>
+                   <li key={i}>
+                      <SingleBook 
+                          key={i}
+                          book={book}
+                          onUpdateBook={(book, shelf) => this.updateShelf(book, shelf)}
+                        />
+                    </li>
                       ))}
                 </ol>
               </div>
