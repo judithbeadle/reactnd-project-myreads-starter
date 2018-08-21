@@ -73,7 +73,7 @@ class ListBooks extends Component {
 					</div>
 				</div>
 				<div className="open-search">
-				 	<Link className="close-search" to="/search">Add a book</Link>
+				 	<Link className="close-search" to="/search" onClick={this.ClearQuery}>Add a book</Link>
 	            </div>
 			</div>
 		)

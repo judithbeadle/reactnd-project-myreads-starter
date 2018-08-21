@@ -28,7 +28,6 @@ class BooksApp extends Component {
       books = [...this.state.books, {...book, shelf}]
     }
     this.setState({books})
-
     BooksAPI.update(book, shelf).then((data) => {
 
     })
@@ -91,7 +90,7 @@ class BooksApp extends Component {
             onUpdateQuery={(query) => this.updateQuery(query)}
             onUpdateShelf={(book, shelf) => {
               this.updateShelf(book, shelf)
-              history.push('/')
+              //history.push('/')
               }}
           />
         )} />

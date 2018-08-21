@@ -16,7 +16,8 @@ class SearchBooks extends Component {
 	}
 
 	clearQuery = () => {
-		this.setState({ query: '' })
+		this.props.setState({ query: 'test' })
+		console.log(this.state.query);
 	}
 
 	updateBook = (book, shelf) => {
@@ -28,11 +29,16 @@ class SearchBooks extends Component {
 		const { query } = this.state
 		let { showingBooks } = this.props
 		let { message } = this.props
+		let displayBooks = []
+
+		if(showingBooks){
+			displayBooks = showingBooks
+		}
 
 		return(
 			 <div className="search-books">
               <div className="search-books-bar">
-              <Link className="close-search" to="/">Close</Link>
+              <Link className="close-search" to="/" onClick={this.clearQuery}>Close</Link>
                 <div className="search-books-input-wrapper">
                   {/*
                     NOTES: The search from BooksAPI is limited to a particular set of search terms.
@@ -50,18 +56,19 @@ class SearchBooks extends Component {
 
                 </div>
               </div>
-              <div className="search-books-results"> 
+              <div className="search-books-results">
                 <ol className="books-grid">
-                {showingBooks.map((book) =>(
-		    	<li key={book.id}>
-					<SingleBook 
-						key={book.id}
-						book={book}
-						onUpdateBook={(book, shelf) => this.updateBook(book, shelf)}
-					/>
-				</li>
-				))}
-				<span className="message">{message}</span>
+	                <span className="message">{message}</span>
+	                {displayBooks.map((book) =>(
+			    	<li key={book.id}>
+						<SingleBook 
+							key={book.id}
+							book={book}
+							onUpdateBook={(book, shelf) => this.updateBook(book, shelf)}
+						/>
+					</li>
+					))}
+					
                 </ol>
               </div>
       </div>
