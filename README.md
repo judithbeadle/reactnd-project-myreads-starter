@@ -18,7 +18,7 @@ Books can be moved from one shelf to another and more books can be added to thes
 
 ## Running the project
 
-In order to get the project running on your local machine, you need to have either yarn or npm installed on your machine.
+In order to get the project running locally, you need to have either yarn or npm installed on your machine.
 
 You can get yarn [here](https://yarnpkg.com/en/docs/install#mac-stable)
 Or download [Node.js and npm](https://nodejs.org/en/)
@@ -26,21 +26,21 @@ Or download [Node.js and npm](https://nodejs.org/en/)
 
 Then follow the steps below:
 
-1. download or clone it to a folder on your computer [https://github.com/judithbeadle/reactnd-project-myreads-starter.git](https://github.com/judithbeadle/reactnd-project-myreads-starter.git)
+1. download or clone the project to a folder on your computer [https://github.com/judithbeadle/reactnd-project-myreads-starter.git](https://github.com/judithbeadle/reactnd-project-myreads-starter.git)
 
-2. cd into reactnd-project-myreads-starter and
+2. `cd` into reactnd-project-myreads-starter
 
 ### if you use npm:
 
-3. install dependencies with: npm install
+3. install dependencies with: `npm install`
 
-4. start the project with: npm start
+4. start the project with: `npm start`
 
 ### if you use yarn:
 
-3. install dependencies with: yarn install
+3. install dependencies with: `yarn install`
 
-4. start the project with: yarn start
+4. start the project with: `yarn start`
 
 This starts the app locally on: `http://localhost:3000`
 
