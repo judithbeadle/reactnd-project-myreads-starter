@@ -1,10 +1,6 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-import * as BooksAPI from './BooksAPI'
-import PropTypes from 'prop-types'
 import SingleBook from './SingleBook.js'
-import escapeRegExp from 'escape-string-regexp'
-import sortBy from 'sort-by'
 
 class SearchBooks extends Component {
 
@@ -30,7 +26,6 @@ class SearchBooks extends Component {
 	render(){
 
 		const { query } = this.state
-		const { books } = this.props
 		let { showingBooks } = this.props
 
 		return(
