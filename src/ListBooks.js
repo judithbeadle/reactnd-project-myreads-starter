@@ -15,11 +15,7 @@ class ListBooks extends Component {
 
 		const { books } = this.props
 		
-
-		let allBooks
-		allBooks = books
-
-		allBooks.sort(sortBy('name'))
+		books.sort(sortBy('name'))
 
 		return (
 			<div className="list-books">
@@ -30,24 +26,25 @@ class ListBooks extends Component {
 					<div className="bookshelf">
 						<h2 className="bookshelf-title">Currently Reading</h2>
 						<div className="bookshelf-books">
-					    <ol className="books-grid">
-					    	{allBooks.filter(book => book.shelf === 'currentlyReading').map((book) =>(
-					    	<li key={book.id}>
-							<SingleBook 
-								key={book.id}
-            					book={book}
-            					onUpdateBook={(book, shelf) => this.updateBook(book, shelf)}
-							/>
-							</li>
-						))}
-					    </ol>
+						    <ol className="books-grid">
+						    	{books.filter(book => book.shelf === 'currentlyReading').map((book) =>(
+						    	<li key={book.id}>
+								<SingleBook 
+									key={book.id}
+	            					book={book}
+	            					onUpdateBook={(book, shelf) => this.updateBook(book, shelf)}
+								/>
+								</li>
+							))}
+						    </ol>
+						</div>
 					</div>
 					
 					<div className="bookshelf">
 					<h2 className="bookshelf-title">Want to Read</h2>
 						<div className="bookshelf-books">
 						    <ol className="books-grid">
-						    	{allBooks.filter(book => book.shelf === 'wantToRead').map((book) =>(
+						    	{books.filter(book => book.shelf === 'wantToRead').map((book) =>(
 						    	<li key={book.id}>
 								<SingleBook 
 									key={book.id}
@@ -64,7 +61,7 @@ class ListBooks extends Component {
 					<h2 className="bookshelf-title">Read</h2>
 						<div className="bookshelf-books">
 						    <ol className="books-grid">
-						    	{allBooks.filter(book => book.shelf === 'read').map((book) =>(
+						    	{books.filter(book => book.shelf === 'read').map((book) =>(
 						    	<li key={book.id}>
 								<SingleBook 
 									key={book.id}
@@ -76,12 +73,10 @@ class ListBooks extends Component {
 						    </ol>
 						</div>
 					</div>
-
+				</div>
+				<div className="open-search">
+				 	<Link className="close-search" to="/search">Add a book</Link>
 	            </div>
-			</div>
-			<div className="open-search">
-			 	<Link className="close-search" to="/search">Add a book</Link>
-            </div>
 			</div>
 		)
 	}
