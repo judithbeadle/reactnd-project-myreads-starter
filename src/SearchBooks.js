@@ -27,6 +27,7 @@ class SearchBooks extends Component {
 
 		const { query } = this.state
 		let { showingBooks } = this.props
+		let { message } = this.props
 
 		return(
 			 <div className="search-books">
@@ -60,6 +61,7 @@ class SearchBooks extends Component {
 					/>
 				</li>
 				))}
+				<span className="message">{message}</span>
                 </ol>
               </div>
       </div>

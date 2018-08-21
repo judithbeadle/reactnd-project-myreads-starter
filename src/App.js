@@ -43,8 +43,8 @@ class BooksApp extends Component {
 
   updateQuery = (query) => {
     let showingBooks
+    let message
     this.setState({ query: query })
-    console.log(query)
     
     if(query){
       BooksAPI.search(query).then(response => {
@@ -57,12 +57,13 @@ class BooksApp extends Component {
               return book
             }
           })
-          console.log('got books')
+          message = ' '
         } else {
-          console.log('no books')
+          message = 'Your search did not return any results. Please try again with a different term.'
           showingBooks = []
         }
         this.setState({showingBooks})
+        this.setState({message})
       })
     }
     else {
@@ -86,6 +87,7 @@ class BooksApp extends Component {
         <Route path="/search" render={({ history }) => (
           <SearchBooks
             showingBooks={this.state.showingBooks}
+            message={this.state.message}
             onUpdateQuery={(query) => this.updateQuery(query)}
             onUpdateShelf={(book, shelf) => {
               this.updateShelf(book, shelf)
